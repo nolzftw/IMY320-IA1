@@ -15,7 +15,6 @@ namespace AudioVisualizerWasm
         [JSExport]
         public static void UpdateAudioData(string frequencyDataJson)
         {
-            // Parse JSON string to float array
             var frequencyData = System.Text.Json.JsonSerializer.Deserialize<float[]>(frequencyDataJson);
             if (frequencyData != null)
                 visualizer.UpdateFrequencyData(frequencyData);
@@ -83,7 +82,6 @@ namespace AudioVisualizerWasm
             _frequencyData = new float[FREQUENCY_BANDS];
             _random = new Random();
 
-            // Initialize particles
             for (int i = 0; i < MAX_PARTICLES; i++)
             {
                 _particles[i] = new Particle();
@@ -101,16 +99,13 @@ namespace AudioVisualizerWasm
         {
             _time += deltaTime;
 
-            // Calculate overall audio energy and spectral characteristics
             float totalEnergy = CalculateEnergyBand(0, FREQUENCY_BANDS);
             float lowFreqEnergy = CalculateEnergyBand(0, 32);
             float midFreqEnergy = CalculateEnergyBand(32, 96);
             float highFreqEnergy = CalculateEnergyBand(96, FREQUENCY_BANDS);
 
-            // Calculate spectral centroid for dynamic effects
             float spectralCentroid = CalculateSpectralCentroid();
 
-            // Update each particle
             for (int i = 0; i < MAX_PARTICLES; i++)
             {
                 UpdateParticle(i, deltaTime, totalEnergy, lowFreqEnergy, midFreqEnergy, highFreqEnergy, spectralCentroid, mouseX, mouseY, mousePressed);
@@ -128,35 +123,32 @@ namespace AudioVisualizerWasm
                 return;
             }
 
-            // Apply different forces based on visualization mode
             switch (_visualizationMode)
             {
-                case 0: // Enhanced radial burst with energy layers
+                case 0: 
                     UpdateEnhancedRadialMode(ref particle, deltaTime, totalEnergy, lowFreqEnergy, midFreqEnergy, highFreqEnergy, spectralCentroid);
                     break;
-                case 1: // Dynamic orbital system
+                case 1: 
                     UpdateDynamicOrbitalMode(ref particle, deltaTime, totalEnergy, lowFreqEnergy, midFreqEnergy, highFreqEnergy, spectralCentroid);
                     break;
-                case 2: // Spectral wave patterns
+                case 2: 
                     UpdateSpectralWaveMode(ref particle, deltaTime, totalEnergy, lowFreqEnergy, midFreqEnergy, highFreqEnergy, spectralCentroid);
                     break;
             }
 
 
-            // Update position and apply physics
             particle.X += particle.VelocityX * (float)deltaTime;
             particle.Y += particle.VelocityY * (float)deltaTime;
-            particle.VelocityX *= 0.98f; // Apply drag
+            particle.VelocityX *= 0.98f; 
             particle.VelocityY *= 0.98f;
             particle.Life -= (float)deltaTime;
 
-            // Update color based on spectral characteristics
             particle.ColorHue = (particle.ColorHue + totalEnergy * 2.0f + spectralCentroid * 1.5f) % 360.0f;
         }
 
         private void UpdateEnhancedRadialMode(ref Particle particle, double deltaTime, float totalEnergy, float lowFreqEnergy, float midFreqEnergy, float highFreqEnergy, float spectralCentroid)
         {
-            float centerX = 400; // Canvas center
+            float centerX = 400;
             float centerY = 300;
             float dx = particle.X - centerX;
             float dy = particle.Y - centerY;
@@ -164,21 +156,17 @@ namespace AudioVisualizerWasm
 
             if (distance > 0)
             {
-                // Multi-layered radial forces based on frequency content
                 float baseForce = totalEnergy * _sensitivity * 80.0f;
                 float lowForce = lowFreqEnergy * _sensitivity * 60.0f;
                 float spiralForce = midFreqEnergy * _sensitivity * 40.0f;
 
-                // Main radial explosion
                 particle.VelocityX += (dx / distance) * baseForce * (float)deltaTime;
                 particle.VelocityY += (dy / distance) * baseForce * (float)deltaTime;
 
-                // Add spiral motion based on spectral centroid
                 float spiralAngle = (float)Math.Atan2(dy, dx) + spectralCentroid * 2.0f;
                 particle.VelocityX += (float)Math.Cos(spiralAngle) * spiralForce * (float)deltaTime;
                 particle.VelocityY += (float)Math.Sin(spiralAngle) * spiralForce * (float)deltaTime;
 
-                // High frequency jitter
                 float jitter = highFreqEnergy * _sensitivity * 20.0f;
                 particle.VelocityX += ((float)_random.NextDouble() - 0.5f) * jitter * (float)deltaTime;
                 particle.VelocityY += ((float)_random.NextDouble() - 0.5f) * jitter * (float)deltaTime;
@@ -195,19 +183,15 @@ namespace AudioVisualizerWasm
 
             if (distance > 0)
             {
-                // Dynamic orbital speeds based on frequency content
                 float orbitalSpeed = (midFreqEnergy + spectralCentroid) * _sensitivity * 40.0f;
 
-                // Orbital force perpendicular to radius
                 particle.VelocityX += -dy * orbitalSpeed * (float)deltaTime * 0.01f;
                 particle.VelocityY += dx * orbitalSpeed * (float)deltaTime * 0.01f;
 
-                // Radial pulsing based on low frequencies
                 float radialPulse = (lowFreqEnergy - 0.3f) * _sensitivity * 30.0f;
                 particle.VelocityX += (dx / distance) * radialPulse * (float)deltaTime;
                 particle.VelocityY += (dy / distance) * radialPulse * (float)deltaTime;
 
-                // High frequency orbital variations
                 float orbitVariation = highFreqEnergy * _sensitivity * 15.0f;
                 float variationAngle = (float)(_time * 3.0f + particle.Life * 2.0f);
                 particle.VelocityX += (float)Math.Cos(variationAngle) * orbitVariation * (float)deltaTime;
@@ -217,7 +201,6 @@ namespace AudioVisualizerWasm
 
         private void UpdateSpectralWaveMode(ref Particle particle, double deltaTime, float totalEnergy, float lowFreqEnergy, float midFreqEnergy, float highFreqEnergy, float spectralCentroid)
         {
-            // Multi-frequency wave system
             float lowWaveAmplitude = lowFreqEnergy * _sensitivity * 80.0f;
             float midWaveAmplitude = midFreqEnergy * _sensitivity * 60.0f;
             float highWaveAmplitude = highFreqEnergy * _sensitivity * 40.0f;
@@ -226,7 +209,6 @@ namespace AudioVisualizerWasm
             float midWaveFreq = 0.02f + spectralCentroid * 0.03f;
             float highWaveFreq = 0.03f + spectralCentroid * 0.04f;
 
-            // Layered wave forces
             float waveForceX = (float)(
                 Math.Sin(_time * lowWaveFreq + particle.Y * 0.005f) * lowWaveAmplitude +
                 Math.Sin(_time * midWaveFreq + particle.Y * 0.01f) * midWaveAmplitude +
@@ -242,7 +224,6 @@ namespace AudioVisualizerWasm
             particle.VelocityX += waveForceX * (float)deltaTime;
             particle.VelocityY += waveForceY * (float)deltaTime;
 
-            // Add spiral component based on total energy
             float spiralForce = totalEnergy * _sensitivity * 30.0f;
             float spiralAngle = (float)_time * 2.0f + particle.Life;
             particle.VelocityX += (float)Math.Cos(spiralAngle) * spiralForce * (float)deltaTime;

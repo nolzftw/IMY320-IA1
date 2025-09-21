@@ -11,6 +11,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>AudioVisualizerWasm</AssemblyName>
     <WasmBuildNative>false</WasmBuildNative>
-    <WasmMainJSPath>wwwroot/app.js</WasmMainJSPath>
+    <WasmMainJSPath>app.js</WasmMainJSPath>
   </PropertyGroup>
 </Project>
