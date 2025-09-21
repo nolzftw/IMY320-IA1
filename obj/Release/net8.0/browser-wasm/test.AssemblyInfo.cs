@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AudioVisualizerWasm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73d574d259a6a8be839d8960ce50f797bde6aac7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b30ffb4282d3dbabe9975c31730c6794736920d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("AudioVisualizerWasm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AudioVisualizerWasm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

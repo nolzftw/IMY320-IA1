@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AudioVisualizerWasm.dll",
   "resources": {
-    "hash": "sha256-PcWb2dUgzxDyMCS1mKw04fYU1TLURvtVALoMt7vh73A=",
+    "hash": "sha256-KybW2LqPjGm+1VAwmde8pUqB5wOCjIkUmRwRVlibbXA=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-D0bzod5lwwSzPR43JC8TTCcZKw+3jIHOk8CZFCRj5is="
     },
@@ -15,7 +15,7 @@
       "dotnet.native.js.symbols": "sha256-r2zUAcwv7lIqaDS0KNOazxUEr7/rHIDV5KlFtfjdAN4="
     },
     "assembly": {
-      "AudioVisualizerWasm.wasm": "sha256-rAXEzr98L2vPGtHpPWXGs+14vDZUfUp0rJaSsdKkc/g=",
+      "AudioVisualizerWasm.wasm": "sha256-HvjPpFm+4Bg8IzPsHSv1iRYTvzwS5BCpzVcdcnyUMk4=",
       "Microsoft.CSharp.wasm": "sha256-R4BkfQTMJCC9t942+b4LkK67BgTQxzYV3PokMroML5w=",
       "Microsoft.VisualBasic.Core.wasm": "sha256-VIJc1zlL8axofAsJnPBNUUhUYGRBYaZkzsw+dAg2Qzw=",
       "Microsoft.VisualBasic.wasm": "sha256-toGBsgRa5jxmO1syOd6WI2La2x3FAYe/ONjeF6czXJ8=",
