@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <UseAppHost>false</UseAppHost>
+    <PublishTrimmed>false</PublishTrimmed>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <WasmGenerateRunV8Script>true</WasmGenerateRunV8Script>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>AudioVisualizerWasm</AssemblyName>
+    <WasmBuildNative>false</WasmBuildNative>
+    <WasmMainJSPath>wwwroot/app.js</WasmMainJSPath>
+  </PropertyGroup>
+</Project>
