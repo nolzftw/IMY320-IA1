@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "CUXqbWwk6dM=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\slugy\\Desktop\\test\\test.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\slugy\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.20\\microsoft.netcore.app.ref.8.0.20.nupkg.sha512",
+    "C:\\Users\\slugy\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.20\\microsoft.windowsdesktop.app.ref.8.0.20.nupkg.sha512",
+    "C:\\Users\\slugy\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.20\\microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512"
+  ],
+  "logs": []
+}
